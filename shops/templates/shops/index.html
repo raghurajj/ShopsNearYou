@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Nearby Shops</title>
+    </head>
+<body>
+    <h1>Nearby Shops</h1>
+    {% if shops %}
+    <ul>
+    {% for shop in shops %}
+        <li>
+        {% if shop.cover_image %}
+        <img src="{{shop.cover_image.url}}" width="240">
+        {% endif %}
+        {{ shop.name }}: {{shop.distance}}
+        </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+    
+</body>
+</html>

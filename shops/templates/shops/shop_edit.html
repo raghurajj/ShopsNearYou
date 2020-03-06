@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>New Shop</h2>
+    <form method="POST" class="post-form" enctype="multipart/form-data">
+      {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+
+    <button onclick="getLocation()">fetch Location!!</button>
+    <p id="demo"></p>
+
+
+    <script>
+        var x = document.getElementById("demo");
+        var lat = document.getElementById("id_lattitude");
+        var lon = document.getElementById("id_longitude");
+        
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+        
+        function showPosition(position) {
+          lat.value=position.coords.latitude;
+          lon.value=position.coords.longitude;
+        }
+        </script>
+</body>
+</html>
+
