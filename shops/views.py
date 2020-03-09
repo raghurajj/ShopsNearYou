@@ -8,8 +8,8 @@ from .forms import PostForm
 import decimal
 from django.shortcuts import redirect
 
-longitude = -80.191788
-latitude = 25.761681
+longitude = 80.0250203
+latitude = 13.5566102
 
 user_location = Point(longitude, latitude, srid=4326)
 
