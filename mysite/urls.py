@@ -15,9 +15,11 @@ from shops.models import Shop
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.Home.as_view(),name='home'),
+    path('', views.shop_list,name='home'),
     path('shop/new/', views.shop_new, name='shop_new'),
+    path('shop/<int:pk>/', views.shop_detail, name='shop_detail'),
 ]
+
 
 
 
