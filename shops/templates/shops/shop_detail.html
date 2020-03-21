@@ -1,14 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'shops/base.html' %}
+
+{% block content %}
+
+<div onload="getLocation()">
+
+
     {% if shop %}
-        {{shop.name}}
-        {{shop.Items_present}}
+    {{shop.name}}
+    {{shop.Items_present}}
     {% endif %}
-</body>
-</html>
+
+    <div class="col-12 col-md-9 m-auto map_display" id="mapid">
+        <!-- <div ></div> -->
+    </div>
+
+    <script >
+        var lat,long;
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+        }
+        
+        function showPosition(position) {
+            lat=position.coords.latitude;
+            long=position.coords.longitude;
+            Load_Map();
+        }
+        function Load_Map(){
+            var map = L.map('mapid').setView([lat, long], 12);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            L.marker([lat, long]).addTo(map)
+                .bindPopup('I am in here.<br> Looking for shops.')
+                .openPopup();
+
+
+
+            L.Routing.control({
+                waypoints: [
+                    L.latLng(lat, long),
+                    L.latLng({{shop.lattitude}}, {{shop.longitude}})
+                ],
+                router: L.Routing.mapbox('pk.eyJ1IjoiMTIzNDVyYWdodSIsImEiOiJjazdyNTg5NXAwNnMxM2VxcnU1NTUxOGY5In0.vHTJipTVZXFc4K7YVpwstQ')
+                }).addTo(map);
+
+                
+
+        }
+    </script>
+        
+
+    
+</div>
+
+{% endblock %}

@@ -1,80 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Nearby Shops</title>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
-        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-        crossorigin=""/>
+{% extends 'shops/base.html' %}
 
-        <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
-        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
-        crossorigin=""></script>
+{% block content %}
 
-        <style>
-            #mapid { height: 500px; }
-        </style>
-    </head>
-    <body onload="getLocation()">
-
-        <form id="searchform"  method="get">
-            <input type="text" class="form-control" name="q" id="id_q"/>
-            <button type="button" onclick="searchform.submit()">Search</button>
-        </form>
-
-
-        <h1>Nearby Shops</h1>
-        {% if shops %}
-        <ul>
-        {% for shop in shops %}
-        <li>
-            {% if shop.cover_image %}
-            <img src="{{shop.cover_image.url}}" width="240">
-            {% endif %}
-            <a href="{% url 'shop_detail' pk=shop.pk %}"> {{ shop.name }} </a>: {{shop.distance}}
-            </li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-
-        <div id="mapid"></div>
-
-        <script >
-            var lat,long;
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
-                }
-            }
-            
-            function showPosition(position) {
-                lat=position.coords.latitude;
-                long=position.coords.longitude;
-                Load_Map();
-            }
-            function Load_Map(){
-                var map = L.map('mapid').setView([lat, long], 12);
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
-
-                L.marker([lat, long]).addTo(map)
-                    .bindPopup('I am in Sricity.<br> Looking for shops.')
-                    .openPopup();
-
-                {% for shop in shops %}
-                    var circle = L.marker([{{ shop.lattitude }}, {{ shop.longitude }}]).addTo(map)
-                    .bindPopup("{{ shop.name }}");
-                {% endfor %}
-
-            }
-        </script>
-            
-
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-5 search_form">
+            <form class="search" id="searchform"  method="get">
+                <input type="text" class="search__field" placeholder="Search items..." name="q">
+                <input type="hidden" class="form-control" id="id_long" name="long">
+                <input type="hidden" class="form-control" id="id_lat" name="lat">
+                <button type="button" class="btn search__btn" onclick="searchform.submit()"><span>Search</span></button>
+            </form>
         
-    </body>
-</html>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-3 shop_list  results">
+        <ul class="results__list">
+            {% if shops %}
+                {% for shop in shops %}
+                    <li>
+                        <a class="results__link results__link--active" href="{% url 'shop_detail' pk=shop.pk %}">
+                            <figure class="results__fig">
+                                {% if shop.cover_image %}
+                                    <img src="{{shop.cover_image.url}}" alt="Test" width="240">
+                                {% endif %}
+                            </figure>
+                            <div class="results__data">
+                                <h4 class="results__name">{{ shop.name }} </h4>
+                                <p class="results__distance">{{shop.distance}}</p>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+
+        </ul>
+      </div>
+      <div class="col-12 col-md-9 map_display" id="mapid">
+        <!-- <div ></div> -->
+      </div>
+    </div>
+  </div>
 
 
+
+  <script >
+    var latt = document.getElementById("id_lat");
+    var lon = document.getElementById("id_long");
+    var lat,long;
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+    }
+    
+    function showPosition(position) {
+        lat=position.coords.latitude;
+        long=position.coords.longitude;
+        latt.value=position.coords.latitude;
+        lon.value=position.coords.longitude;
+        Load_Map();
+    }
+    function Load_Map(){
+        var map = L.map('mapid').setView([lat, long], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([lat, long]).addTo(map)
+            .bindPopup('I am in here.<br> Looking for shops.')
+            .openPopup();
+
+        {% for shop in shops %}
+            var circle = L.marker([{{ shop.lattitude }}, {{ shop.longitude }}]).addTo(map)
+            .bindPopup("{{ shop.name }}");
+        {% endfor %}
+
+    }
+  </script>
+
+{% endblock %}
 

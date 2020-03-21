@@ -10,22 +10,31 @@ from django.shortcuts import redirect
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
-longitude = 80.0250203
-latitude = 13.5566102
 
-user_location = Point(longitude, latitude, srid=4326)
 
 def shop_list(request):
+    longitude = 80.0250203
+    latitude = 13.5566102
+    user_location = Point(longitude, latitude, srid=4326)
     query=""
+
     shops=[]
     if request.GET:
         query=request.GET['q']
+        longitude=float(request.GET['long'])
+        latitude=float(request.GET['lat'])
+        user_location = Point(longitude, latitude, srid=4326)
+    
+        shops = Shop.objects.annotate(distance=Distance('location',
+        user_location)
+        ).order_by('distance')
 
-    shops = Shop.objects.annotate(distance=Distance('location',
-    user_location)
-    ).order_by('distance')
+        shops=shops.filter(Items_present__contains=[query]).distinct()
+    else:
+        shops = Shop.objects.annotate(distance=Distance('location',
+        user_location)
+        ).order_by('distance')
 
-    shops=shops.filter(Items_present__contains=[query]).distinct()
     
     return render(request, 'shops/index.html', {'shops': shops})
 
