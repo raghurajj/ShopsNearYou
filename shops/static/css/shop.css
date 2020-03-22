@@ -11,8 +11,6 @@ body{
   background-size: cover;
   background-repeat: no-repeat;
   min-height:100vh;
-
-  /* min-height: calc(100vh - 2 * 4vw); } */
 }
 
 .container{
@@ -27,16 +25,10 @@ body{
   background-color: orange !important;
 }
 
- .btn{
+ .search__btn{
   background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
-  border-radius: 10rem;
-  border: none;
-  text-transform: uppercase;
   color: #fff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: all .2s; }
+ }
   .btn:hover {
     transform: scale(1.03); }
   .btn:focus {
@@ -45,7 +37,17 @@ body{
 
 .btn {
   padding: 0.9rem 2rem;
-  font-size: 1rem; }
+  font-size: 1rem;
+  border-radius: 10rem;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all .2s; }
+
+
+/* search (home page) */
 
 .search_form{
   margin: 4vh;
@@ -73,18 +75,18 @@ body{
     color: inherit;
     width: 30rem;
   }
-
-
     .search__field:focus {
       outline: none; }
 
     .search__field::placeholder {
       color: #DAD0CC; }
 
+
+/* shop_lists */
+
 .shop_list{
-  background-color: white;
-  height:100vh;
-}
+    background-color: white;
+    height:100vh;}
 
 .results {
   padding: 3rem 0; }
@@ -100,10 +102,7 @@ body{
   .results__link:hover{
     background-color: #F9F5F3;
     transform: translateY(-2px); }
-  /* .results__link--active {
-    background-color: #F9F5F3; } */
   .results__fig{
-    /* flex: 0 0 5.5rem; */
     border-radius: 100%;
     overflow: hidden;
     height: 3rem;
@@ -146,8 +145,20 @@ body{
       display: table;
       clear: both; }
 
+
+/* map */
 .map_display{
   background-color: #F9F5F3;
 }
 
 
+/* shop adding form */
+.form_heading{
+    margin-top: 15px;
+}
+
+.form_btn{
+    background-color: white;
+    color: #F48982;
+    width:110px;
+}

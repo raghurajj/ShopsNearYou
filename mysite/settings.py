@@ -56,8 +56,11 @@ INSTALLED_APPS = [
     'leaflet',
     'djgeojson',
     'jsonfield',
-    'shops'
+    'shops',
+    'crispy_forms',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
