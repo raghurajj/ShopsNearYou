@@ -1,0 +1,11 @@
+{% extends 'shops/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2 style="margin-left: 50px; color: white">You have been logged out :(</h2>
+	<div class="border-top pt-3">
+        <small class="text-muted" style="margin-left: 100px; font-size: 20px">
+            <a class="ml-2" href="{% url 'login' %}">Sign In Again</a>
+        </small>
+    </div>
+{% endblock content %}

@@ -4,21 +4,14 @@
 
 <div  class="shop_detail">
 
-
-    <!-- {% if shop %}
-    {{shop.name}}
-    {{shop.Items_present}}
-    {% endif %} -->
-
-
     <div class="row ">
         <div class="col-10 col-md-5 m-auto shop_name"><h1>{{shop.name}}</h1></div>
+        <div class="col-10 col-md-5 mr-5 detail_buttons">
+            <a class="btn fetch_btn d_btn" href="{% url 'shop_remove' pk=shop.pk %}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Remove Shop</a>
+            <a class="btn edit_btn d_btn" href="{% url 'shop_edit' pk=shop.pk %}"><i class="fa fa-magic" aria-hidden="true"></i>&nbsp; Edit Shop</a>
+        </div>
     </div>
 
-
-    <div class=row>
-        <a class="btn edit_btn" href="{% url 'shop_edit' pk=shop.pk %}"><i class="fa fa-magic" aria-hidden="true"></i>&nbsp; Edit Shop</a>
-    </div>
     <div class="row map_container">
         <div class="col-10 col-md-3 ml-auto mr-5 Items_list">
             <h2 class="item_lists">Items Present</h2>
@@ -32,7 +25,29 @@
         </div>
         <div class="col-10 col-md-6 mr-auto map_display" id="mapid"></div>
     </div>
+
+<div class="row">
+    <div class="col-10 col-md-6 mr-auto ml-auto reviews">
+        <h2>Reviews</h2>
     
+        <a class="btn search__btn" href="{% url 'add_review_to_shop' pk=shop.pk %}">Add Review</a>
+        
+        <ul class="rview">        
+                {% for review in shop.reviews.all %}
+                <li class="reviews_list">
+                    <div class="review">
+                        <div class="date">{{ review.created_date }}</div>
+                        <strong>{{ review.customer }}</strong>
+                        <p>{{ review.text }}</p>
+                    </div>
+                {% empty %}
+                    <p>No reviews here yet :(</p>
+                </li>
+                {% endfor %}
+            
+        </ul>
+    </div>
+</div>  
 
     <script >
         var lat,long;

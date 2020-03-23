@@ -16,6 +16,7 @@ body{
 .container{
   box-sizing: border-box;
   margin-top: 5vh;
+  margin-bottom: 5vh;
   border-radius: 10px;
   min-height: 100vh;
   background-color: #F9F5F3;
@@ -26,11 +27,12 @@ body{
 }
 
 .navbar-brand {
-    font-family: 'Satisfy', cursive;
+    font-family: cursive;
 }
 
 
  .search__btn{
+   width:fit-content;
   background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
   color: #fff;
  }
@@ -176,16 +178,16 @@ body{
 .edit_btn{
     background-color: white;
     color: #F48982;
-    position: absolute;
+    /* position: absolute;
     top:10px;
-    right:10px;
-    width:200px;
+    right:10px; */
+    width:fit-content;
 }
 
 .fetch_btn{
     background-color: white;
     color: #F48982;
-    width:200px;
+    width:fit-content;
 }
 
 
@@ -233,4 +235,45 @@ h1,h2{
     border-radius: 8px;
     display: inline-block;
     margin-top: 7px;
+}
+
+.detail_buttons{
+    align-self: end;
+}
+
+.d_btn{
+    display: inline-block;
+    margin-top: 5vh;
+    margin-left: 10px;
+}
+
+.review_form{
+  margin-top: 5vh;
+}
+
+.reviews{
+  margin-top: 5vh;
+  background-color: #F9F5F3;
+  border-radius: 10px;
+}
+
+.reviews_list{
+  list-style: none;
+  /* margin: 10px; */
+  padding-left: 10px;
+}
+
+.reviews_list:hover{
+  background-color: white;
+}
+
+.rview{
+  padding: 10px;
+}
+
+.footer{
+  /* background-color: #F48982 !important; */
+  height: 15vh;
+  justify-content: center;
+  color: black;
 }

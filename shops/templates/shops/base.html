@@ -40,12 +40,29 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
+        
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'shop_new' %}"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp; Add Shop</a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'aboutUs' %}"><i class="fas fa-info-circle"></i>&nbsp; AboutUs</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}"><img src="https://img.icons8.com/ios-glyphs/30/000000/logout-rounded-up--v2.png"/>&nbsp; logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-lock"></i>&nbsp; login</a>
+            </li>
+            {% endif %}
+
+
+
           </ul>
         </div>
     </nav>
@@ -54,5 +71,12 @@
 {% block content %}
 {% endblock %}
 
+<!-- <footer class="py-5 bg-orange">
+  <div class="footer">
+    <p class="m-0 text-highlight text-white">Copyright © Shop Near You 2020</p>
+    <p class="m-0 text-highlight text-white">All rights Reserved </p>
+    <p class="m-0 text-highlight text-white">Designed by developers at- Shop Near You</p>
+  </div>
+</footer> -->
 </body>
 </html>

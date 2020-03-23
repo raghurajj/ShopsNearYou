@@ -4,12 +4,15 @@ from django.contrib.gis.db.models.functions import Distance
 from .models import Shop
 from django.contrib.gis.geos import Point
 from django.shortcuts import render
-from .forms import PostForm
+from .forms import PostForm, ReviewForm
 import decimal
 from django.shortcuts import redirect
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .forms import UserRegisterForm
 
 
 def shop_list(request):
@@ -73,3 +76,38 @@ def shop_edit(request, pk):
     else:
         form = PostForm(instance=shop)
     return render(request, 'shops/shop_edit.html', {'form': form})
+
+
+def shop_remove(request, pk):
+    shop = get_object_or_404(Shop, pk=pk)
+    shop.delete()
+    return redirect('home')
+
+def add_review_to_shop(request, pk):
+    shop = get_object_or_404(Shop, pk=pk)
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.shop = shop
+            review.save()
+            return redirect('shop_detail', pk=shop.pk)
+    else:
+        form = ReviewForm()
+    return render(request, 'shops/add_review_to_shop.html', {'form': form}) 
+
+def aboutUs(request):
+    return render(request, 'shops/about.html',{})
+
+
+def register(request):
+	if request.method == 'POST':
+		form = UserRegisterForm(request.POST)
+		if form.is_valid():
+			form.save()
+			username = form.cleaned_data.get('username')
+			messages.success(request, f'{username}, Your account has been created!')
+			return redirect('login')
+	else:
+		form = UserRegisterForm()
+	return render(request, 'shops/register.html', {'form':form})
