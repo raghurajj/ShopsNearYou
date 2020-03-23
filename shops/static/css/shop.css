@@ -25,6 +25,11 @@ body{
   background-color: orange !important;
 }
 
+.navbar-brand {
+    font-family: 'Satisfy', cursive;
+}
+
+
  .search__btn{
   background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
   color: #fff;
@@ -147,18 +152,85 @@ body{
 
 
 /* map */
-.map_display{
-  background-color: #F9F5F3;
+.map_container{
+  margin-top: 14vh;
 }
 
 
 /* shop adding form */
 .form_heading{
-    margin-top: 15px;
+    margin-top: 5vh;
+
 }
 
 .form_btn{
     background-color: white;
     color: #F48982;
     width:110px;
+}
+
+.shop_detail{
+    position: relative;
+}
+
+.edit_btn{
+    background-color: white;
+    color: #F48982;
+    position: absolute;
+    top:10px;
+    right:10px;
+    width:200px;
+}
+
+.fetch_btn{
+    background-color: white;
+    color: #F48982;
+    width:200px;
+}
+
+
+.shop_name{
+    font-family: 'Satisfy', cursive;
+    text-align: center;
+    top:4vh;
+}
+
+.Items_list{
+    background-color: white;
+    height: 80vh;
+    border-radius: 10px;
+    /* margin-left: 5wh; */
+
+}
+
+.items_prsnt{
+    list-style: none;
+}
+
+h1,h2{
+    font-family:cursive;
+}
+
+.item_lists{
+    font-family: 'Satisfy', cursive;
+    text-align: center;
+    padding: 10px;
+}
+
+.map_display{
+    border-radius: 10px;
+}
+
+.itemss{
+    list-style-type: square;
+}
+
+.items_prsnt{
+    background-color: #F59A83;
+    text-align: center;
+    padding: 2px 10px;
+    width:fit-content;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 7px;
 }

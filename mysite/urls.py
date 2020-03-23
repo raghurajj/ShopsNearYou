@@ -18,6 +18,7 @@ urlpatterns = [
     path('', views.shop_list,name='home'),
     path('shop/new/', views.shop_new, name='shop_new'),
     path('shop/<int:pk>/', views.shop_detail, name='shop_detail'),
+    path('shop/<int:pk>/edit/', views.shop_edit, name='shop_edit'),
 ]
 
 

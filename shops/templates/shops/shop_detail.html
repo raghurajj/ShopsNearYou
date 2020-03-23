@@ -2,17 +2,37 @@
 
 {% block content %}
 
-<div onload="getLocation()">
+<div  class="shop_detail">
 
 
-    {% if shop %}
+    <!-- {% if shop %}
     {{shop.name}}
     {{shop.Items_present}}
-    {% endif %}
+    {% endif %} -->
 
-    <div class="col-12 col-md-9 m-auto map_display" id="mapid">
-        <!-- <div ></div> -->
+
+    <div class="row ">
+        <div class="col-10 col-md-5 m-auto shop_name"><h1>{{shop.name}}</h1></div>
     </div>
+
+
+    <div class=row>
+        <a class="btn edit_btn" href="{% url 'shop_edit' pk=shop.pk %}"><i class="fa fa-magic" aria-hidden="true"></i>&nbsp; Edit Shop</a>
+    </div>
+    <div class="row map_container">
+        <div class="col-10 col-md-3 ml-auto mr-5 Items_list">
+            <h2 class="item_lists">Items Present</h2>
+            <ul class="itemss">
+                {% if shop %}
+                {% for item in shop.Items_present %}
+                <li class="items_prsnt">{{item}}</li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+        <div class="col-10 col-md-6 mr-auto map_display" id="mapid"></div>
+    </div>
+    
 
     <script >
         var lat,long;
@@ -28,6 +48,7 @@
             Load_Map();
         }
         function Load_Map(){
+            
             var map = L.map('mapid').setView([lat, long], 12);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

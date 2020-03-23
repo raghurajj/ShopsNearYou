@@ -24,7 +24,7 @@ def shop_list(request):
         longitude=float(request.GET['long'])
         latitude=float(request.GET['lat'])
         user_location = Point(longitude, latitude, srid=4326)
-    
+        print(user_location)
         shops = Shop.objects.annotate(distance=Distance('location',
         user_location)
         ).order_by('distance')
@@ -58,3 +58,18 @@ def shop_new(request):
 def shop_detail(request, pk):
     shop = get_object_or_404(Shop, pk=pk)
     return render(request, 'shops/shop_detail.html', {'shop': shop})
+
+
+def shop_edit(request, pk):
+    shop = get_object_or_404(Shop, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=shop)
+        if form.is_valid():
+            shop = form.save(commit=False)
+            shop.cover_image=form.cleaned_data['cover_image']
+            shop.save()
+            form.save()
+            return redirect('shop_detail', pk=shop.pk)
+    else:
+        form = PostForm(instance=shop)
+    return render(request, 'shops/shop_edit.html', {'form': form})
