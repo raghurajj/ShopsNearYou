@@ -12,7 +12,7 @@
 
       <div class="row ">
         <div class="col-5 col-md-6">
-          <button class="btn fetch_btn" onclick="getLocationn()">fetch Location!!</button>
+          <button class="btn fetch_btn" onclick="getLocationn(event)">fetch Location!!</button>
         </div>
         <div class="col-5 col-md-6">
           <button type="submit" class="btn form_btn">Save</button>
@@ -31,7 +31,8 @@
       var lat = document.getElementById("id_lattitude");
       var lon = document.getElementById("id_longitude");
       
-      function getLocationn() {
+      function getLocationn(e) {
+        e.preventDefault();
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(showPosition);
         } else { 
