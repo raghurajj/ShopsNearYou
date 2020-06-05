@@ -13,9 +13,9 @@ if os.name == 'nt':
     os.environ['GDAL_DATA'] = OSGEO4W + r"\share\\gdal"
     os.environ['PROJ_LIB'] = OSGEO4W + r"\share\\proj"
     os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
-    
+    GDAL_LIBRARY_PATH = 'C:\\OSGeo4W64\\bin\\gdal204.dll'
 
-GDAL_LIBRARY_PATH = 'C:\\OSGeo4W64\\bin\\gdal204.dll'
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL="/media/"
@@ -28,9 +28,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','shopsnearyou.herokuapp.com']
 
-# SECRET_KEY = os.environ.get('SECRET_KEY')
-# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',

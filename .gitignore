@@ -3,3 +3,5 @@ myvenv
 .vscode
 test.css
 test2.html
+/static
+/media

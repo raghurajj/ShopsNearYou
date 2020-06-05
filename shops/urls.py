@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+from django.conf.urls import url
+from mysite import settings
+from django.views.static import serve 
 
 urlpatterns = [
     path('', views.shop_list,name='home'),
@@ -9,4 +12,5 @@ urlpatterns = [
     path('shop/<pk>/remove/', views.shop_remove, name='shop_remove'),
     path('shop/<int:pk>/review/', views.add_review_to_shop, name='add_review_to_shop'),
     path('aboutUs', views.aboutUs, name='aboutUs'),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
 ]
