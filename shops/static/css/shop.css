@@ -18,7 +18,6 @@ body{
   margin-top: 5vh;
   margin-bottom: 5vh;
   border-radius: 10px;
-  min-height: 100vh;
   background-color: #F9F5F3;
 }
 
@@ -94,7 +93,8 @@ color: #fff;
 
 .shop_list{
     background-color: white;
-    height:100vh;}
+    border-radius: 10px;
+  }
 
 .results {
   padding: 3rem 0; }
@@ -162,6 +162,7 @@ color: #fff;
 
 #mapid{
   margin: 4wh;
+  height: 100vh;
 }
 
 
@@ -207,8 +208,6 @@ color: #fff;
     background-color: white;
     height: 80vh;
     border-radius: 10px;
-    /* margin-left: 5wh; */
-
 }
 
 .items_prsnt{
@@ -259,18 +258,19 @@ h1,h2{
 
 .reviews{
   margin-top: 5vh;
+  margin-bottom: 3vh;
   background-color: #F9F5F3;
   border-radius: 10px;
 }
 
 .reviews_list{
   list-style: none;
-  /* margin: 10px; */
+  margin-bottom: 10px;
   padding-left: 10px;
 }
 
 .reviews_list:hover{
-  background-color: white;
+  background-color: #F59A83;
 }
 
 .rview{
@@ -278,7 +278,6 @@ h1,h2{
 }
 
 .footer{
-  /* background-color: #F48982 !important; */
   height: 15vh;
   justify-content: center;
   color: black;

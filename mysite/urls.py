@@ -18,9 +18,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', views.register, name = 'register'),
     path('login/', auth_views.LoginView.as_view(template_name = 'shops/login.html'), name = 'login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name = 'shops/logout.html'), name = 'logout'),
+    path('logout/', auth_views.LogoutView.as_view(template_name = 'shops/index.html'), name = 'logout'),
     path('', include('shops.urls')),
-
 ]
 
 

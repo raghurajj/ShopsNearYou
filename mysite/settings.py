@@ -24,7 +24,7 @@ GEOS_LIBRARY_PATH = 'C:\\OSGeo4W64\\bin\\geos_c.dll'
 
 SECRET_KEY = 'wu=6z7$7)=7d#1vprblo3sjrsrh*q7d_x22r41s2q&os+melq4'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','shopsnearyou.herokuapp.com']
 
@@ -43,10 +43,10 @@ INSTALLED_APPS = [
     'jsonfield',
     'shops',
     'crispy_forms',
-    # 'whitenoise.runserver_nostatic',
+    'whitenoise.runserver_nostatic',
     
 ]
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -130,5 +130,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'shops/static')
 ]
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())

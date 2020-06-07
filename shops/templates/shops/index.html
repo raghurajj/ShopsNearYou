@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container m-auto"  onload="getLocation()">
+<div class="container front_cnt"  onload="getLocation()">
     <div class="row justify-content-md-center">
         <div class="col-md-6  search_form">
             <form class="search" id="searchform"  method="get">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="row">
-      <div class="col-12 col-md-3 shop_list order-2 order-md-1 results">
+      <div class="col-11  col-md-3 shop_list mr-auto ml-auto order-2 order-md-1 results">
         <ul class="results__list">
             {% if shops %}
                 {% for shop in shops %}
@@ -37,11 +37,9 @@
 
         </ul>
       </div>
-      <div class="col-12 col-md-9 order-1 order-md-2 map_display" id="mapid">
-        <!-- <div ></div> -->
-      </div>
+      <div class="col-11 col-md-9 order-1 mr-auto ml-auto order-md-2 map_display" id="mapid"></div>
     </div>
-  </div>
+</div>
 
 
 
