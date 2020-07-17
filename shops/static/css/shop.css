@@ -282,3 +282,5 @@ h1,h2{
   justify-content: center;
   color: black;
 }
+
+.top-buffer { margin-top:20px; }

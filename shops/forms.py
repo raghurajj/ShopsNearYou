@@ -7,7 +7,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Shop
-        fields = ('name', 'lattitude','longitude','Items_present','cover_image')
+        fields = ('name', 'lattitude','longitude','Items_present','cover_image','image_with_Aadhar')
 
 class ReviewForm(forms.ModelForm):
 
