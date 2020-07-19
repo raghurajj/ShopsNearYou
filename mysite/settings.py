@@ -24,7 +24,7 @@ GEOS_LIBRARY_PATH = 'C:\\OSGeo4W64\\bin\\geos_c.dll'
 
 SECRET_KEY = 'wu=6z7$7)=7d#1vprblo3sjrsrh*q7d_x22r41s2q&os+melq4'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','shopsnearyou.herokuapp.com']
 

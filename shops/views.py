@@ -81,11 +81,9 @@ def shop_detail(request, pk):
 def shop_edit(request, pk):
     shop = get_object_or_404(Shop, pk=pk)
     if request.method == "POST":
-        form = PostForm(request.POST or None, request.FILES or None,instance=Shop())
+        form = PostForm(request.POST or None, request.FILES or None,instance=shop)
         if form.is_valid():
-            shop = form.save(commit=False)
-            shop.cover_image=form.cleaned_data['cover_image']
-            shop.save()
+            shop = form.save()
             return redirect('shop_detail', pk=shop.pk)
     else:
         form = PostForm(instance=shop)
