@@ -12,5 +12,6 @@ urlpatterns = [
     path('shop/<pk>/remove/', views.shop_remove, name='shop_remove'),
     path('shop/<int:pk>/review/', views.add_review_to_shop, name='add_review_to_shop'),
     path('aboutUs', views.aboutUs, name='aboutUs'),
+    path('order', views.order, name='order'),
     url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
 ]

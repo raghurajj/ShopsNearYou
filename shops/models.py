@@ -8,6 +8,8 @@ from datetime import datetime
 
 class Shop(models.Model):
     name = models.CharField(max_length=100)
+    shop_owner= models.CharField(max_length=100,blank=True)
+    owner_email= models.CharField(max_length=100,blank=True)
     location = models.PointField(null=True,blank=True, spatial_index=True, geography=True)
     lattitude=models.DecimalField(max_digits=20, decimal_places=10,default=decimal.Decimal(0))
     longitude=models.DecimalField(max_digits=20, decimal_places=10,default=decimal.Decimal(0))

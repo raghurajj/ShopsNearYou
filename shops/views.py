@@ -13,6 +13,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
 from django.contrib.gis.measure import Distance as dist
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
 
 import decimal
 
@@ -30,7 +32,6 @@ def shop_list(request):
         longitude=float(request.GET['long'])
         latitude=float(request.GET['lat'])
         user_location = Point(longitude, latitude, srid=4326)
-        shops_within_radius=Shop.objects.filter(location__distance_lt=(user_location, dist(km=radius)))
 
         while not shops:
             if radius>150:
@@ -60,7 +61,8 @@ def shop_new(request):
             shop = form.save(commit=False)
             shop.lattitude=float(form['lattitude'].value())
             shop.longitude=float(form['longitude'].value())
-            # shop.cover_image.delete(save=False)
+            shop.shop_owner=request.user.username
+            shop.owner_email=request.user.email
             shop.cover_image=form.cleaned_data['cover_image']
             shop.location=Point(shop.longitude, shop.lattitude)
             shop.save()
@@ -112,6 +114,26 @@ def aboutUs(request):
     return render(request, 'shops/about.html',{})
 
 
+def order(request):
+    if request.method=="POST":
+        customer_name=request.POST['customer-name']
+        customer_email=request.POST.get('customer-email')
+        customer_phone=request.POST.get('customer-phone')
+        order_description=request.POST.get('order-description')
+        owner_email=request.POST.get('owner-email')
+        owner_name=request.POST.get('owner-name')
+        message="Hello I am "+customer_name+ " my email is : "+customer_email+" and my contact number is : "+customer_phone+" and here is my Order description :  \n"+order_description
+        send_mail(
+            'Pre-Packaging Order',
+            message,
+            customer_email,
+            [owner_email],
+            fail_silently=False
+        )
+
+        return redirect('home')
+        
+
 def register(request):
 	if request.method == 'POST':
 		form = UserRegisterForm(request.POST)
@@ -123,3 +145,4 @@ def register(request):
 	else:
 		form = UserRegisterForm()
 	return render(request, 'shops/register.html', {'form':form})
+

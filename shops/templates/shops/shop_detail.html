@@ -6,15 +6,71 @@
 
     <div class="row ">
         <div class="col-10 col-md-5 m-auto shop_name"><h1>{{shop.name}}</h1></div>
-        <div class="col-10 col-md-5 mr-5 detail_buttons">
+        <div class="col-10 col-md-5 m-auto detail_buttons">
+            {% ifequal user.username shop.shop_owner %}
             <a class="btn fetch_btn d_btn" href="{% url 'shop_remove' pk=shop.pk %}"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Remove Shop</a>
             <a class="btn edit_btn d_btn" href="{% url 'shop_edit' pk=shop.pk %}"><i class="fa fa-magic" aria-hidden="true"></i>&nbsp; Edit Shop</a>
+            {% endifequal %}
         </div>
     </div>
 
     <div class="row map_container">
         <div class="col-10 col-md-3 m-auto order-2 order-md-1 Items_list">
             <h2 class="item_lists">Items Present</h2>
+            <button type="button" class="btn search__btn m-auto" data-toggle="modal" data-target="#exampleModal">
+                Request Pre-Packaging
+            </button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Pre-Packaging Order</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form  action="{% url 'order' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                              <label for="shop-name" class="col-form-label">Shop:</label>
+                              <input type="hidden" class="form-control" name="shop-name" value="{{shop.name}}"> 
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="owner-email" value="{{shop.owner_email}}" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="owner-name" value="{{shop.shop_owner}}" >
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-name" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" name="customer-name" value="{{user.username}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email" class="col-form-label">Email:</label>
+                                <input type="email" class="form-control" name="customer-email" value="{{user.email}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-phone" class="col-form-label">Phone:</label>
+                                <input type="tel" class="form-control" name="customer-phone" value="{{user.contact}}">
+                            </div>
+                            <div class="form-group">
+                              <label for="order-description" class="col-form-label">Order Description:</label>
+                              <textarea class="form-control" name="order-description"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn search__btn" >Send</button>  
+                            </div>
+                        </form>
+                    </div>
+                    
+                  </div>
+                </div>
+            </div>
+            
+
+            
             <ul class="itemss">
                 {% if shop %}
                 {% for item in shop.Items_present %}
