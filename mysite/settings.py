@@ -10,12 +10,12 @@ if os.name == 'nt':
         OSGEO4W += "64"
     assert os.path.isdir(OSGEO4W), "Directory does not exist: " + OSGEO4W
     os.environ['OSGEO4W_ROOT'] = OSGEO4W
-    os.environ['GDAL_DATA'] = OSGEO4W + r"\share\gdal"
-    os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
+    os.environ['GDAL_DATA'] = OSGEO4W + r"\share\\gdal"
+    os.environ['PROJ_LIB'] = OSGEO4W + r"\share\\proj"
     os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
 
 
-GDAL_LIBRARY_PATH = 'C:\\OSGeo4W64\\bin\\gdal300.dll'
+# GDAL_LIBRARY_PATH = 'C:\\OSGeo4W64\\bin\\gdal300.dll'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL="/media/"
