@@ -72,6 +72,12 @@ def shop_new(request):
         form = PostForm()
     return render(request, 'shops/shop_edit.html', {'form': form})
 
+def myshops(request):
+    user = request.user 
+    shop_list = Shop.objects.filter(shop_owner=user).distinct()
+    # print(user,shop_list)
+    return render(request, 'shops/myshops.html',{'shop_list':shop_list})
+
 
 def shop_detail(request, pk):
     shop = get_object_or_404(Shop, pk=pk)
@@ -121,6 +127,7 @@ def order(request):
         owner_email=request.POST.get('owner-email')
         owner_name=request.POST.get('owner-name')
         message="Hello I am "+customer_name+ " my email is : "+customer_email+" and my contact number is : "+customer_phone+" and here is my Order description :  \n"+order_description
+        print(message)
         send_mail(
             'Pre-Packaging Order',
             message,
