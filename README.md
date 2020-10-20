@@ -2,6 +2,8 @@
 
 ---
 ShopsNearYou is a platfrom where shop owners can add their shops and customers can find the shops according to the Items they need.
+
+
 ![Home Screen](screenshots/HomeScreen.png)
 
 # Features
@@ -14,24 +16,34 @@ ShopsNearYou is a platfrom where shop owners can add their shops and customers c
     -website is completely responsive
 
 ### Screenshots
+-User Registration Page
 ![Register Screen](screenshots/Register.png)
+
+---
+-Shop Detail Page
+
 ![Shop Detail Screen](screenshots/Shopdetail.png)
+
+---
+-Pre-Packaging Page
+
 ![Pre packaging Screen](screenshots/PrePackaging.png)
+
+---
+-Add Shop Page
+
 ![Add Shop Screen](screenshots/AddShop.png)
+
+---
+-Add review Page
+
 ![Review Screen](screenshots/Reviews.png)
+
+---
 
 ### Tech Stack
     -Django
 
 ### Database 
     -postgresql
-
-
-
-
-
-
-
-
-
 
