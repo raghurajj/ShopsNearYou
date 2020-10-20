@@ -32,6 +32,7 @@ def shop_list(request):
         longitude=float(request.GET['long'])
         latitude=float(request.GET['lat'])
         user_location = Point(longitude, latitude, srid=4326)
+        print(user_location)
 
         while not shops:
             if radius>150:
@@ -49,8 +50,6 @@ def shop_list(request):
         shops = Shop.objects.annotate(distance=Distance('location',
         user_location)
         ).order_by('distance')
-
-    
     return render(request, 'shops/index.html', {'shops': shops})
 
 
@@ -127,7 +126,7 @@ def order(request):
         owner_email=request.POST.get('owner-email')
         owner_name=request.POST.get('owner-name')
         message="Hello I am "+customer_name+ " my email is : "+customer_email+" and my contact number is : "+customer_phone+" and here is my Order description :  \n"+order_description
-        print(message)
+        print(message,owner_email)
         send_mail(
             'Pre-Packaging Order',
             message,

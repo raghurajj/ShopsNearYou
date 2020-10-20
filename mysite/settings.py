@@ -1,6 +1,8 @@
 import os
 import django_heroku
 import dj_database_url
+from dotenv import load_dotenv
+from os.path import join, dirname
 
 
 if os.name == 'nt':
@@ -28,6 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','shopsnearyou.herokuapp.com']
 
+dotenv_path = join(dirname(__file__), '../.env')
+load_dotenv(dotenv_path)
 
 
 INSTALLED_APPS = [
@@ -43,9 +47,9 @@ INSTALLED_APPS = [
     'jsonfield',
     'shops',
     'crispy_forms',
-    'whitenoise.runserver_nostatic',
-    
+    'whitenoise.runserver_nostatic',  
 ]
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -86,11 +90,11 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'location_test1',
-        'USER': 'raghuraj',
-        'PASSWORD': '4545454545',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT')
     }
 }
 
@@ -138,8 +142,8 @@ LOGOUT_REDIRECT_URL = '/'
 # Email config
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT= 587
-EMAIL_HOST_USER='shopsnearyoudotcom@gmail.com'
-EMAIL_HOST_PASSWORD='shopsnearyou@123456'
+EMAIL_HOST_USER=os.getenv('EMAIL_USER')
+EMAIL_HOST_PASSWORD=os.getenv('EMAIL_PASS')
 EMAIL_USE_TLS=True
 
 
