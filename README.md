@@ -1,7 +1,7 @@
 # ShopsNearYou
 
 ---
-ShopsNearYou is a platfrom where shop owners can add their shops and customers can find the shops according to the Items they need.
+ShopsNearYou is a Django based platform where shop owners can add their shops and customers can find the shops according to the Items they need.
 
 
 ![Home Screen](screenshots/HomeScreen.png)
